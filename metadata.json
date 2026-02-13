@@ -1,0 +1,8 @@
+{
+  "name": "Aura 2.0",
+  "description": "An advanced AI assistant dashboard featuring multimodal chat, real-time voice interaction via Gemini Live, and sophisticated glassmorphism design.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
