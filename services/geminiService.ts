@@ -6,11 +6,8 @@ export class GeminiService {
   private ai: GoogleGenAI;
 
   constructor() {
-    // process.env.API_KEY is replaced during build by Vite's define config
+    // process.env.API_KEY is replaced during build by Vite
     const apiKey = process.env.API_KEY;
-    if (!apiKey) {
-      console.warn("API_KEY is not defined. Ensure it is set in Vercel environment variables.");
-    }
     this.ai = new GoogleGenAI({ apiKey: apiKey || '' });
   }
 

@@ -14,6 +14,7 @@
             background-color: #020617;
             color: #f8fafc;
             overflow-x: hidden;
+            margin: 0;
         }
         .glass {
             background: rgba(15, 23, 42, 0.6);
@@ -23,18 +24,8 @@
         .aura-glow {
             box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.3);
         }
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(139, 92, 246, 0.2);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(139, 92, 246, 0.4);
+        #root {
+            min-height: 100vh;
         }
     </style>
 <script type="importmap">
@@ -52,6 +43,7 @@
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    <!-- No importmap here: Vite handles all dependencies during build -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
