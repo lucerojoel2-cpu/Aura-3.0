@@ -1,13 +1,17 @@
 
-import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 import { MODELS } from "../constants";
 
 export class GeminiService {
   private ai: GoogleGenAI;
 
   constructor() {
-    // Always use the process.env.API_KEY directly as per SDK guidelines
-    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    // process.env.API_KEY is replaced during build by Vite's define config
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      console.warn("API_KEY is not defined. Ensure it is set in Vercel environment variables.");
+    }
+    this.ai = new GoogleGenAI({ apiKey: apiKey || '' });
   }
 
   async generateText(prompt: string, options: { model?: string, systemInstruction?: string, search?: boolean } = {}) {
@@ -16,7 +20,6 @@ export class GeminiService {
       contents: prompt,
       config: {
         systemInstruction: options.systemInstruction,
-        // Only use googleSearch tool if search is explicitly enabled
         tools: options.search ? [{ googleSearch: {} }] : undefined
       }
     });
@@ -33,7 +36,6 @@ export class GeminiService {
         ]
       }
     });
-    // Correctly accessing .text property instead of method
     return response.text;
   }
 
